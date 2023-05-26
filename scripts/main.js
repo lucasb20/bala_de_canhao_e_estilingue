@@ -28,7 +28,7 @@ function fire(){
     v_x = numv*Math.cos(theta)
     v_y = numv*Math.sin(theta)
 
-    setInterval(gravidade,150)
+    setInterval(gravidade,100)
     setInterval(move_ball,50)
 }
 
@@ -43,6 +43,26 @@ function move_ball(){
 function move_and_check(){
     let not_ballx = ballx+v_x
     let not_bally = bally-v_y
+
+    if(not_ballx > 300){
+        v_x = -0.9*v_x
+        not_ballx = 300 - ballrad
+    }
+
+    if(not_ballx < 0){
+        v_x = -0.9*v_x
+        not_ballx = 0 + ballrad
+    }
+
+    if(not_bally < 0){
+        v_y = -0.9*v_y
+        not_bally = 0 + ballrad
+    }
+
+    if(not_bally > 150){
+        v_y = -0.9*v_y
+        not_bally = 150 - ballrad
+    }
 
     ballx = not_ballx
     bally = not_bally
