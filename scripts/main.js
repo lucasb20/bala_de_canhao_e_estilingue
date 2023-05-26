@@ -12,6 +12,8 @@ let theta, numv
 
 let v_x,v_y
 
+const gravity = 1
+
 function init(){
     ctx.beginPath()
     ctx.fillStyle = "#ff0000"
@@ -26,6 +28,7 @@ function fire(){
     v_x = numv*Math.cos(theta)
     v_y = numv*Math.sin(theta)
 
+    setInterval(gravidade,150)
     setInterval(move_ball,50)
 }
 
@@ -41,10 +44,13 @@ function move_and_check(){
     let not_ballx = ballx+v_x
     let not_bally = bally-v_y
 
-    
-
     ballx = not_ballx
     bally = not_bally
+}
+
+function gravidade(){
+    v_y-=gravity
+    console.log('v_y: '+v_y)
 }
 
 /* 
