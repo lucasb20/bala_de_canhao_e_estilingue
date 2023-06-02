@@ -1,12 +1,15 @@
-let canvas = document.querySelector('#canvas')
-let ctx = canvas.getContext('2d')
+const canvas = document.querySelector('#canvas')
+const ctx = canvas.getContext('2d')
+
 canvas.style.background = 'darkkhaki'
+canvas.width = 800
+canvas.height = 400
 
 let but_fire = document.querySelector('#but_fire')
 but_fire.addEventListener('click',fire)
 
-let ballrad=5
-let ballx=1+ballrad,bally=149-ballrad
+const ballrad=15
+let ballx=ballrad,bally=400-ballrad
 
 let theta, numv
 
@@ -33,7 +36,7 @@ function fire(){
 }
 
 function move_ball(){
-    ctx.clearRect(0,0,300,150)
+    ctx.clearRect(0,0,canvas.width,canvas.height)
     move_and_check()
     ctx.beginPath()
     ctx.arc(ballx,bally,ballrad,0,Math.PI*2,false)
@@ -44,24 +47,24 @@ function move_and_check(){
     let not_ballx = ballx+v_x
     let not_bally = bally-v_y
 
-    if(not_ballx > 300){
+    if(not_ballx > 800 - ballrad){
         v_x = -0.9*v_x
-        not_ballx = 300 - ballrad
+        not_ballx = 800 - ballrad
     }
 
-    if(not_ballx < 0){
+    if(not_ballx < 0 + ballrad){
         v_x = -0.9*v_x
         not_ballx = 0 + ballrad
     }
 
-    if(not_bally < 0){
+    if(not_bally < 0 + ballrad){
         v_y = -0.9*v_y
         not_bally = 0 + ballrad
     }
 
-    if(not_bally > 150){
+    if(not_bally > 400 - ballrad){
         v_y = -0.9*v_y
-        not_bally = 150 - ballrad
+        not_bally = 400 - ballrad
     }
 
     ballx = not_ballx
